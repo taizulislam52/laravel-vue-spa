@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\PostResource;
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PostsController extends Controller
 {
@@ -15,7 +16,8 @@ class PostsController extends Controller
      */
     public function index()
     {
-        return PostResource::collection(\App\Post::all()->sortByDesc->created_at);
+        $persons = Post::orderBy('id', 'desc')->paginate(5);
+        return PostResource::collection($persons);
     }
 
     /**

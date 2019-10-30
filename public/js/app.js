@@ -1893,6 +1893,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -37490,26 +37494,42 @@ var render = function() {
           _c(
             "div",
             { staticClass: "card-body" },
-            _vm._l(_vm.getAllRecentPosts, function(post) {
-              return _c("div", { key: post.id, staticClass: "card" }, [
-                _c("div", { staticClass: "card-body" }, [
-                  _c("h5", { staticClass: "card-title" }, [
-                    _vm._v(_vm._s(post.title))
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "card-text" }, [
-                    _vm._v(_vm._s(post.body))
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "card-text" }, [
-                    _c("small", { staticClass: "text-muted" }, [
-                      _vm._v("Post on : " + _vm._s(post.created_at))
+            [
+              _vm._l(_vm.getAllRecentPosts, function(post) {
+                return _c("div", { key: post.id, staticClass: "card" }, [
+                  _c("div", { staticClass: "card-body" }, [
+                    _c("h5", { staticClass: "card-title" }, [
+                      _vm._v(_vm._s(post.title))
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "card-text" }, [
+                      _vm._v(_vm._s(post.body))
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "card-text" }, [
+                      _c("small", { staticClass: "text-muted" }, [
+                        _vm._v("Post on : " + _vm._s(post.created_at))
+                      ])
                     ])
                   ])
                 ])
-              ])
-            }),
-            0
+              }),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "d-flex justify-content-center" },
+                [
+                  _c("span", { staticClass: "mr-1" }, [
+                    _vm._v("To see all posts please visit ")
+                  ]),
+                  _c("router-link", { attrs: { to: { name: "posts" } } }, [
+                    _vm._v("  here")
+                  ])
+                ],
+                1
+              )
+            ],
+            2
           )
         ])
       ])
