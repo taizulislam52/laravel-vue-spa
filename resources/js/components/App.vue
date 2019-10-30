@@ -1,23 +1,25 @@
 <template>
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Example Component</div>
-
-                    <div class="card-body">
-                        I'm an example component.
-                    </div>
-                </div>
-            </div>
-        </div>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                <router-link :to="{name:'home'}" class="nav-link">Home</router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link :to="{name:'posts'}" class="nav-link">Posts</router-link>
+                </li>
+            </ul>
+        </nav><br />
+        <router-view></router-view>
     </div>
 </template>
 
+<style>
+
+</style>
+
 <script>
-    export default {
-        mounted() {
-            console.log('Component mounted.')
-        }
+
+    export default{
     }
 </script>

@@ -15,7 +15,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        return PostResource::collection(\App\Post::all());
+        return PostResource::collection(\App\Post::all()->sortByDesc->created_at);
     }
 
     /**
@@ -49,7 +49,8 @@ class PostsController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        return new PostResource($post->update($this->validatePost()));
+        $post->update($this->validatePost());
+        return new PostResource($post);
     }
 
     /**
