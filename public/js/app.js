@@ -2092,6 +2092,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     this.getAllPosts();
+    console.log('R', this.$route.name);
   },
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -37487,9 +37488,7 @@ var render = function() {
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-md-10" }, [
         _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-header" }, [
-            _vm._v("See Recent Post")
-          ]),
+          _c("div", { staticClass: "card-header" }, [_vm._v("Recent Posts")]),
           _vm._v(" "),
           _c(
             "div",
@@ -37788,7 +37787,7 @@ var render = function() {
             "div",
             { staticClass: "card-header d-flex justify-content-between" },
             [
-              _c("div", [_vm._v("See Recent Post")]),
+              _c("div", [_vm._v(" All Posts")]),
               _vm._v(" "),
               _c(
                 "router-link",

@@ -4,7 +4,7 @@
             <div class="col-md-10">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
-                        <div>See Recent Post</div>
+                        <div> All Posts</div>
                         <router-link :to="{name:'create'}" class="text-primary">Create Post</router-link>
                     </div>
 
@@ -36,7 +36,8 @@
             }
         },
         created(){
-            this.getAllPosts()
+            this.getAllPosts();
+            console.log('R',this.$route.name)
         },
         mounted() {
             console.log('Component mounted.')

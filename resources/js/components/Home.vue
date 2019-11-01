@@ -3,7 +3,7 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card">
-                    <div class="card-header">See Recent Post</div>
+                    <div class="card-header">Recent Posts</div>
 
                     <div class="card-body">
                         <div class="card" v-for="post in getAllRecentPosts" :key="post.id">
