@@ -2513,6 +2513,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _plugins_PaginationComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../plugins/PaginationComponent */ "./resources/js/components/plugins/PaginationComponent.vue");
 //
 //
 //
@@ -2543,15 +2544,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    PaginationComponent: _plugins_PaginationComponent__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   data: function data() {
     return {
-      posts: []
+      posts: [],
+      pagination: {
+        current_page: 1
+      }
     };
   },
   created: function created() {
     this.getAllPosts();
-    console.log('R', this.$route.name);
   },
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -2560,11 +2574,21 @@ __webpack_require__.r(__webpack_exports__);
     getAllPosts: function getAllPosts() {
       var _this = this;
 
-      axios.get('/api/posts').then(function (response) {
+      axios.get('/api/posts?page=' + this.pagination.current_page).then(function (response) {
         _this.posts = response.data.data;
+        _this.pagination = response.data.meta;
       })["catch"](function (error) {
         console.log('Error', error);
       });
+    },
+    deletePost: function deletePost(post) {
+      var _this2 = this;
+
+      if (confirm("Are you sure to Delete")) {
+        axios["delete"]("/api/posts/".concat(post.id)).then(function (response) {
+          _this2.getAllPosts();
+        });
+      }
     }
   }
 });
@@ -40971,55 +40995,82 @@ var render = function() {
           _c(
             "div",
             { staticClass: "card-body" },
-            _vm._l(_vm.posts, function(post) {
-              return _c("div", { key: post.id, staticClass: "card" }, [
-                _c("div", { staticClass: "card-body" }, [
-                  _c("h5", { staticClass: "card-title" }, [
-                    _vm._v(_vm._s(post.title))
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "card-text" }, [
-                    _vm._v(_vm._s(post.body))
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "card-text" }, [
-                    _c("small", { staticClass: "text-muted" }, [
-                      _vm._v("Post on : " + _vm._s(post.created_at))
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "d-flex justify-content-end" },
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "text-primary pr-1",
-                          attrs: {
-                            to: { name: "post-edit", params: { id: post.id } }
-                          }
-                        },
-                        [_vm._v("Edit")]
-                      ),
-                      _vm._v(
-                        "\n                                |\n                                "
-                      ),
-                      _c(
-                        "a",
-                        {
-                          staticClass: "text-danger pl-1",
-                          attrs: { href: "#" }
-                        },
-                        [_vm._v("Delete")]
-                      )
-                    ],
-                    1
-                  )
+            [
+              _vm._l(_vm.posts, function(post) {
+                return _c("div", { key: post.id, staticClass: "card" }, [
+                  _c("div", { staticClass: "card-body" }, [
+                    _c("h5", { staticClass: "card-title" }, [
+                      _vm._v(_vm._s(post.title))
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "card-text" }, [
+                      _vm._v(_vm._s(post.body))
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "card-text" }, [
+                      _c("small", { staticClass: "text-muted" }, [
+                        _vm._v("Post on : " + _vm._s(post.created_at))
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "d-flex justify-content-end align-items-baseline"
+                      },
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "text-primary pr-1",
+                            attrs: {
+                              to: { name: "post-edit", params: { id: post.id } }
+                            }
+                          },
+                          [_vm._v("Edit")]
+                        ),
+                        _vm._v(
+                          "\n                                |\n                                "
+                        ),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-link text-danger",
+                            on: {
+                              click: function($event) {
+                                return _vm.deletePost(post)
+                              }
+                            }
+                          },
+                          [_vm._v("Delete")]
+                        )
+                      ],
+                      1
+                    )
+                  ])
                 ])
-              ])
-            }),
-            0
+              }),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "mt-2" },
+                [
+                  _vm.pagination.last_page > 1
+                    ? _c("pagination-component", {
+                        attrs: { pagination: _vm.pagination, offset: 5 },
+                        on: {
+                          paginate: function($event) {
+                            return _vm.getAllPosts()
+                          }
+                        }
+                      })
+                    : _vm._e()
+                ],
+                1
+              )
+            ],
+            2
           )
         ])
       ])
