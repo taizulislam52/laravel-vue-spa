@@ -7,6 +7,8 @@
                 </li>
                 <li class="nav-item">
                     <router-link :to="{name:'posts'}" class="nav-link">Posts</router-link>
+                </li> <li class="nav-item">
+                    <router-link :to="{name:'customers'}" class="nav-link">Customers</router-link>
                 </li>
             </ul>
         </nav><br />

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Customer;
 use App\Http\Resources\CustomerResource;
 use Illuminate\Http\Request;
 
@@ -13,8 +14,10 @@ class CustomersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+
     {
-        return CustomerResource::collection(\App\Customer::paginate(10));
+        $customers = Customer::orderBy('id', 'desc')->paginate(10);
+        return CustomerResource::collection($customers);
     }
 
     /**
@@ -85,6 +88,6 @@ class CustomersController extends Controller
 //    }
 
     public function search($field,$query){
-        return  Customer::collection(\App\Customer::where($field,'LIKE',"%$query%")->latest()->paginate(10));
+        return  CustomerResource::collection(\App\Customer::where($field,'LIKE',"%$query%")->latest()->paginate(10));
     }
 }

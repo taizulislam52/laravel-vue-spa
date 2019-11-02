@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
                         <div> All Posts</div>
-                        <router-link :to="{name:'create'}" class="text-primary">Create Post</router-link>
+                        <router-link :to="{name:'post-create'}" class="text-primary">Create Post</router-link>
                     </div>
 
                     <div class="card-body">
@@ -15,7 +15,7 @@
                                 <p class="card-text">{{post.body}}</p>
                                 <p class="card-text"><small class="text-muted">Post on : {{post.created_at}}</small></p>
                                 <div class="d-flex justify-content-end">
-                                    <router-link :to="{name:'edit', params:{ id: post.id }}" class="text-primary pr-1">Edit</router-link>
+                                    <router-link :to="{name:'post-edit', params:{ id: post.id }}" class="text-primary pr-1">Edit</router-link>
                                     |
                                     <a  href="#" class="text-danger pl-1">Delete</a>
                                 </div>

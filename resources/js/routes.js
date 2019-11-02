@@ -5,6 +5,9 @@ import HomePost from "./components/posts/HomePost";
 import CreatePost from "./components/posts/CreatePost";
 import EditPost from "./components/posts/EditPost";
 import Home from "./components/Home";
+import HomeCustomer from "./components/customers/HomeCustomer";
+import CreateCustomer from "./components/customers/CreateCustomer";
+import EditCustomer from "./components/customers/EditCustomer";
 
 const routes = [
     {
@@ -20,15 +23,32 @@ const routes = [
 
     },
             {
-                name: 'create',
+                name: 'post-create',
                 path: '/posts/create',
                 component: CreatePost
             },
             {
-                name: 'edit',
+                name: 'post-edit',
                 path: '/posts/:id/edit',
                 component: EditPost
             },
+    {
+        name: 'customers',
+        path: '/customers',
+        component: HomeCustomer
+
+
+    },
+    {
+        name: 'customer-create',
+        path: '/customers/create',
+        component: CreateCustomer
+    },
+    {
+        name: 'customer-edit',
+        path: '/customers/:id/edit',
+        component: EditCustomer
+    },
 
 
 ];
